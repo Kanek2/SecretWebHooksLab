@@ -55,70 +55,6 @@ secret_web_hooks_lab:
   ban_hammer_webhook_enabled: true
 ```
 
-### Advanced Configuration
-
-<details>
-<summary>Click to expand full configuration options</summary>
-
-```yaml
-secret_web_hooks_lab:
-  # Basic Settings
-  is_enabled: true
-  debug: false
-  
-  # Ban Hammer Settings
-  ban_hammer_webhook_enabled: true
-  ban_hammer_webhook_url: "YOUR_DISCORD_WEBHOOK_URL"
-  
-  # Embed Appearance
-  embed_color: 16711680  # Red (0xFF0000)
-  footer_text: "⚖️ Justice served at"
-  
-  # Ban Duration Settings
-  permanent_ban_text: "PERMANENT"
-  duration_format: "{0:F0} minutes"
-  permanent_ban_threshold_days: 365.0
-  
-  # Random Titles (one will be selected randomly)
-  titles:
-    - "🔨 Ban Hammer Strikes!"
-    - "⚖️ Justice Has Been Served"
-    - "🚫 Player Banned"
-    - "🛡️ Server Protection Activated"
-    - "💀 Another One Bites the Dust"
-    - "🚨 Security Alert"
-    - "⛔ Access Denied"
-  
-  # Field Customization
-  player_field_name: "Player"
-  admin_field_name: "Admin"
-  reason_field_name: "Reason"
-  duration_field_name: "Duration"
-  
-  # Field Layout (inline = side by side)
-  player_field_inline: true
-  admin_field_inline: true
-  reason_field_inline: false
-  duration_field_inline: false
-  
-  # Optional: Show SteamIDs
-  show_steam_id: false
-  player_steam_id_field_name: "Player SteamID"
-  admin_steam_id_field_name: "Admin SteamID"
-  
-  # Optional: Show IP Addresses (SECURITY RISK!)
-  show_ip_address: false
-  player_ip_field_name: "Player IP"
-  admin_ip_field_name: "Admin IP"
-  
-  # Random GIFs (one will be selected randomly)
-  ban_gifs:
-    - "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm9vODE0bTNpOTZ2c3hsaXd6NjVodHoxb2FwMHpsemNqM201aTc4YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GIuQfHtQO8QrgAlhqv/giphy.gif"
-    # Add more GIF URLs as needed
-```
-
-</details>
-
 ## 🎯 Discord Webhook Setup
 
 1. **Open Discord** and go to your server
@@ -128,20 +64,6 @@ secret_web_hooks_lab:
 5. **Click** "Create Webhook"
 6. **Copy** the webhook URL
 7. **Paste** it into your plugin configuration
-
-## 🔧 Example Output
-
-When a player gets banned, you'll see a Discord embed like this:
-
-```
-🔨 Ban Hammer Strikes!
-
-Player: PlayerName123      Admin: AdminName
-Reason: Cheating detected
-Duration: 1440 minutes
-
-⚖️ Justice served at • Today at 14:30
-```
 
 ## 🛡️ Security Considerations
 

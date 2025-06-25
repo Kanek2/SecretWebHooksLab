@@ -9,7 +9,7 @@ public class Config : IConfig
     
     // #################################################### -> BANHAMMER SETTINGS <- ##########################################################################
     public bool BanHammerWebhookEnabled { get; set; } = true;
-    public string BanHammerWebhookUrl { get; set; } = "https://discord.com/api/webhooks/1386757994519199784/_nH8UILmbIdqF6iMqS0fy5nY7z_BM_1zmLqUPBOhTY8ouvDYn24tbkXrw5i-1w4d7EbH";
+    public string BanHammerWebhookUrl { get; set; } = "";
     
     // Basic embed settings
     public List<string> Titles { get; set; } = new List<string>

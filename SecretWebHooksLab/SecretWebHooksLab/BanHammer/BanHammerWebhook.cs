@@ -77,7 +77,7 @@ namespace SecretWebHooksLab.WebHooks
                 DateTime expiresTime = new DateTime(expiresTicks, DateTimeKind.Utc);
                 TimeSpan duration = expiresTime - issuanceTime;
                 
-                // Safe duration text formatting
+                
                 string durationText;
                 try
                 {
@@ -181,7 +181,7 @@ namespace SecretWebHooksLab.WebHooks
                     });
                 }
 
-                // Add IP fields if enabled
+               
                 if (config.ShowIpAddress)
                 {
                     string playerIp = ev.Target?.IPAddress ?? "Unknown";

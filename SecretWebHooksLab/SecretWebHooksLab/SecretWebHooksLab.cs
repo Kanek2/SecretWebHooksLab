@@ -12,31 +12,34 @@ namespace SecretWebHooksLab
     {
         public override string Name => "SecretWebHooksLab";
         public override string Author => "Kanekuu";
-        public override Version Version => new Version(0, 1, 0);
+        public override Version Version => new Version(0, 2, 0);
         
         private BanHammerWebhook banHammerWebhook;
+        private BanHammerLog banHammerLog;
         public static SecretWebHooksLab Instance { get; private set; }
 
         public override void OnEnabled()
         {
             Instance = this;
             
-            // Initialize webhooks
+       
             if (Config.BanHammerWebhookEnabled)
             {
                 banHammerWebhook = new BanHammerWebhook();
+                banHammerLog = new BanHammerLog();
+                banHammerLog.RegisterEvents();
                 banHammerWebhook.RegisterEvents();
             }
          
             base.OnEnabled();
             
-            // Display detailed plugin information
+            
             DisplayPluginInfo();
         }
 
         public override void OnDisabled()
         {
-            // Unregister events
+         
             if (banHammerWebhook != null)
             {
                 banHammerWebhook.UnregisterEvents();
@@ -64,20 +67,19 @@ namespace SecretWebHooksLab
             sb.AppendLine($"│ Active Webhooks: {enabledWebhooks}/1                                            │");
             sb.AppendLine("├─────────────────────────────────────────────────────────────────┤");
             
-            // Display webhook modules
+          
             sb.AppendLine("│  WEBHOOK MODULES:                                               │");
             sb.AppendLine("├─────────────────────────────────────────────────────────────────┤");
             
             DisplayWebhookModule(sb, "Ban Hammer", Config.BanHammerWebhookEnabled, 
                 GetMaskedUrl(Config.BanHammerWebhookUrl), "Player ban notifications");
             
-            // Add more webhook modules here as you expand
-            // DisplayWebhookModule(sb, "Join/Leave", Config.JoinLeaveWebhookEnabled, 
-            //     GetMaskedUrl(Config.JoinLeaveWebhookUrl), "Player connection events");
+        
+   
             
             sb.AppendLine("└─────────────────────────────────────────────────────────────────┘");
             
-            // Log each line separately for better formatting
+      
             var lines = sb.ToString().Split('\n');
             foreach (var line in lines)
             {

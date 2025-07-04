@@ -9,9 +9,9 @@ public class Config : IConfig
     
     // #################################################### -> BANHAMMER SETTINGS <- ##########################################################################
     public bool BanHammerWebhookEnabled { get; set; } = true;
-    public string BanHammerWebhookUrl { get; set; } = "https://discord.com/api/webhooks/1386757994519199784/_nH8UILmbIdqF6iMqS0fy5nY7z_BM_1zmLqUPBOhTY8ouvDYn24tbkXrw5i-1w4d7EbH";
-    
-    // Basic embed settings
+
+    public string BanHammerWebhookUrl { get; set; } = "";
+ 
     public List<string> Titles { get; set; } = new List<string>
     {
         "🔨 Ban Hammer Strikes!",
@@ -59,7 +59,7 @@ public class Config : IConfig
     public bool AdminIpFieldInline { get; set; } = true;
     
 
-    [Description("List of GIF URLs to randomly display with ban notifications")]
+    [Description("List of GIF URLs to randomly display with ban notifications. Leave empty to disable GIFs.")]
     public List<string> BanGifs { get; set; } = new List<string>
     {
         "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbm9vODE0bTNpOTZ2c3hsaXd6NjVodHoxb2FwMHpsemNqM201aTc4YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GIuQfHtQO8QrgAlhqv/giphy.gif",
@@ -71,5 +71,4 @@ public class Config : IConfig
         "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjdjeDY2a3N4a3JvYzBsc2xiejU1anZnaXpqa241MHYwMDJ0Z29nbyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KCe9K3t7lNs58UvobV/giphy.gif"
     };
     
-    // #################################################### -> BANHAMMER SETTINGS END <- ##########################################################################
-}
+  }

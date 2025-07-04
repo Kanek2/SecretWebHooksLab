@@ -11,8 +11,14 @@ namespace SecretWebHooksLab.WebHooks
 {
     public class BanHammerWebhook
     {
-        private readonly HttpClient _httpClient = new HttpClient();
+        private readonly HttpClient _httpClient;
         private static readonly Random _random = new();
+        
+        public BanHammerWebhook()
+        {
+            _httpClient = new HttpClient();
+            _httpClient.Timeout = TimeSpan.FromSeconds(10);
+        }
         
         public void RegisterEvents()
         {
@@ -26,7 +32,7 @@ namespace SecretWebHooksLab.WebHooks
 
         public void OnPlayerBanned(BannedEventArgs ev)
         {
-            // DON'T block the main thread - use Task.Run for fire-and-forget
+         
             Task.Run(async () =>
             {
                 try
@@ -46,7 +52,6 @@ namespace SecretWebHooksLab.WebHooks
             {
                 var config = SecretWebHooksLab.Instance?.Config;
                 
-                // Safety checks
                 if (config == null)
                 {
                     Log.Error("[BanHammer] Config is null!");
@@ -60,7 +65,6 @@ namespace SecretWebHooksLab.WebHooks
                     return;
                 }
 
-                // Safe duration calculation with null checks
                 if (ev?.Details == null)
                 {
                     Log.Error("[BanHammer] Ban details are null!");
@@ -87,7 +91,7 @@ namespace SecretWebHooksLab.WebHooks
                     durationText = "Unknown duration";
                 }
 
-                // Safe title selection with proper null checks
+             
                 string selectedTitle;
                 try
                 {
@@ -109,7 +113,7 @@ namespace SecretWebHooksLab.WebHooks
                     selectedTitle = "Player Banned";
                 }
 
-                // Select random GIF from config or use default
+               
                 string selectedGif = null;
                 try
                 {
@@ -128,12 +132,12 @@ namespace SecretWebHooksLab.WebHooks
                     Log.Error($"[BanHammer] Error selecting GIF: {ex.Message}");
                 }
 
-                // Safe field value extraction
+            
                 string playerName = ev.Target?.Nickname ?? "Unknown Player";
                 string adminName = ev.Player?.Nickname ?? "Unknown Admin";
                 string reason = ev.Details.Reason ?? "No reason provided";
 
-                // Prepare additional info fields if enabled
+              
                 var fields = new List<object>
                 {
                     new { 
@@ -215,8 +219,7 @@ namespace SecretWebHooksLab.WebHooks
                 var json = JsonConvert.SerializeObject(webhook);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 
-                // Set a reasonable timeout to prevent hanging
-                _httpClient.Timeout = TimeSpan.FromSeconds(10);
+              
                 
                 var response = await _httpClient.PostAsync(config.BanHammerWebhookUrl, content);
                 
@@ -250,7 +253,7 @@ namespace SecretWebHooksLab.WebHooks
             }
         }
 
-        // Proper disposal
+     
         public void Dispose()
         {
             _httpClient?.Dispose();
